@@ -45,7 +45,9 @@ public class Console {
         if(!passwordValidator(userPassword)){
             return "PASSWORD DENIED!\nPassword Structure:\n- Atleast 1 uppercase letter\n- Atleast 1 lowercase letter\n- More than 8 characters long\n- Atleast 1 number\n- Atleast 1 special character";
         }
-
+        User newUSer = new User(userName, userPassword);
+        users.add(newUSer);
+        
         return "REGISTERED SUCCESSFULLY";
     }
 }
