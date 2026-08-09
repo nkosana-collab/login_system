@@ -28,4 +28,30 @@ public class TestConsole {
         assertNotNull(platform);
         assertEquals(result, "REGISTERED SUCCESSFULLY");
     }
+    
+    
+    /**
+     * The Console should not register invalid new User details
+     * Scenario:
+     * Given that new user has invalid userInformation.
+     * When they try to register--
+     * Then the console should reject their registration details.
+     */
+    @Test
+    public void ConsoleDoesNotRegisterNewUsersWithInvalidDetails() {
+        // Given:
+        String name = "sim";
+        String password = "loki7yyy";
+
+        // When:
+        Console platform = new Console();
+        String result = platform.register(name, password);
+
+        String passwordStructure = "PASSWORD DENIED!\nPassword Structure:\n- Atleast 1 uppercase letter\n- Atleast 1 lowercase letter\n- More than 8 characters long\n- Atleast 1 number\n- Atleast 1 special character";
+
+        // Then:
+        assertNotNull(platform);
+        assertNotNull(result);
+        assertEquals(passwordStructure, result);
+    }
 }
