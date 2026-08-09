@@ -127,4 +127,24 @@ public class TestConsole {
         assertNotNull(result);
         assertEquals("INCORRECT PASSWORD!", result);
     }
+
+    /**
+     * The Console should deny login of users that don't exist.
+     * Scenario:
+     * Given that a user is not registered.
+     * When they attemp to login--
+     * They should be denied access. 
+     */
+    @Test
+    public void ConsoleDeniesNonExistentUser() {
+        //Given:
+        Console plartform = new Console();
+        assertNotNull(plartform);
+
+        // When: 
+        String result = plartform.login("sizwe", "Zwe@mbl22");
+
+        // Then: 
+        assertEquals("USER NOT FOUND!", result);
+    }
 }
