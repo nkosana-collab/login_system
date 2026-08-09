@@ -80,4 +80,51 @@ public class TestConsole {
         // Then:
         assertEquals("USERNAME ALREADY EXISTS", secondAttempt);
     }
+
+    /**
+     * The Console should login valid userInformation
+     * Scenario:
+     * Given that a user has registered successfully.
+     * When they attempt to login with valid information--
+     * Then they should be logged in successfully.
+     */
+    @Test
+    public void ValidLoginInSucceeds() {
+        // Given:
+        String name = "thulani";
+        String password = "Pastor@8";
+
+        Console platform = new Console();
+        platform.register(name, password);
+
+        // When:
+        String result = platform.login(name, password);
+
+        // Then:
+        assertNotNull(result);
+        assertEquals("LOGGED IN SUCCESSFULLY!", result);
+    }
+
+    /**
+     * The Console should deny invalid password login
+     * Scenario:
+     * Given that a new user has successfully registered.
+     * When they attempt to login with incorrect passowrd--
+     * Then they should be denied access.
+     */
+    @Test
+    public void ConsoleDeniesIncorrectPasswordLogin(){
+        // Given:
+        String name = "sizwe";
+        String password = "Zwe@mbal1";
+        Console platform = new Console();
+        platform.register(name, password);
+
+        // When:
+        String result = platform.login(name, "Zwe@mhal1");
+
+        // Then:
+        assertNotNull(result);
+        assertEquals("INCORRECT PASSWORD!", result);
+    }
 }
