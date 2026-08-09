@@ -29,7 +29,7 @@ public class TestConsole {
         assertEquals(result, "REGISTERED SUCCESSFULLY");
     }
     
-    
+
     /**
      * The Console should not register invalid new User details
      * Scenario:
@@ -53,5 +53,31 @@ public class TestConsole {
         assertNotNull(platform);
         assertNotNull(result);
         assertEquals(passwordStructure, result);
+    }
+
+
+    /**
+     * The Console must not register already exsting users.
+     * Scenarion:
+     * Given that a user has already registered successfully.
+     * When they attempt to register again--
+     * Then their registration should fail.
+     */
+    @Test
+    public void ConsoleDeniesRegistrationOfExistingUsers() {
+        
+        // Given:
+        String name = "prince";
+        String password = "choicE4@2";
+        Console platform = new Console();
+        String firstAttempt = platform.register(name, password);
+
+        assertEquals("REGISTERED SUCCESSFULLY", firstAttempt);
+
+        // When:
+        String secondAttempt = platform.register(name, password);
+
+        // Then:
+        assertEquals("USERNAME ALREADY EXISTS", secondAttempt);
     }
 }
